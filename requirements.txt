@@ -1,9 +1,1 @@
-Librerías: 
-
-numpy
-ultralytics
-os
-cv2
-sort (en el Github)
-string
-easyocr
+requests
