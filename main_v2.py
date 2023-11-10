@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import datetime
 from ultralytics import YOLO
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -14,7 +15,7 @@ coco_model = YOLO('yolov8n.pt')
 license_plate_detector = YOLO('./license_plate_detector_final.pt')
 
 #load video
-cap = cv2.VideoCapture("./sample.mp4")
+cap = cv2.VideoCapture("./PlatesDataSet.mp4")
 #vehicles = [2,3,5,7]
 
 #read frames
@@ -23,6 +24,7 @@ ret = True
 
 while ret:
     frame_num += 1
+    now = datetime.now()
     ret, frame = cap.read()
     
     if ret: 
@@ -50,13 +52,13 @@ while ret:
                 continue 
 
         # track vehicles 
+        print(detections_)
         track_ids = mot_tracker.update(np.asarray(detections_))
         # detect license plates
         license_plates = license_plate_detector(frame)[0]
         for license_plate in license_plates.boxes.data.tolist():
             x1, y1, x2, y2, score, class_id = license_plate
             
-            print(get_car(license_plate,track_ids,vehicles))
             # assign license plate to car
             xcar1, ycar1, xcar2, ycar2, car_id, vehicle_type = get_car(license_plate,track_ids,vehicles)
             
@@ -79,5 +81,4 @@ while ret:
                                                                "text_score":license_plate_text_score,
                                                                "vehicle_type":vehicle_type}}
 # write results 
-write_csv(results, "./test_final.csv")
-
+write_csv(results, "./accuracy_final.csv")
