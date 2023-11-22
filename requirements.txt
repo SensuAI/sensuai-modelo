@@ -6,3 +6,5 @@ ultralytics
 ## sort (en el Github)
 # string
 easyocr
+filterpy
+schedule
