@@ -1,7 +1,10 @@
 import pandas as pd
+from datetime import datetime
 
-def process_csv(input_csv_path, output_csv_path="./cleandata/clean_data.csv", output_json_path="./cleandata/clean_final.json"):
+def process_csv(folder_location, output_csv_path="./cleandata/clean_data.csv", output_json_path="./cleandata/clean_final.json"):
     # Leer el archivo CSV
+    input_csv_path = folder_location + "/raw_data_{}.csv".format(datetime.now().strftime("%Y-%m-%d"))
+    print(f"-----------------------SE REALIZARA LA LIMPIEZA DE: {input_csv_path}-----------------------")
     data_raw = pd.read_csv(input_csv_path, dtype={
         'frame_nmr': 'string',
         'car_id': 'int',
@@ -36,7 +39,3 @@ def process_csv(input_csv_path, output_csv_path="./cleandata/clean_data.csv", ou
     # Guardar resultados en CSV y JSON
     df_sorted[["vehicle_type", "license_number", "det_start", "det_end"]].to_csv(output_csv_path, index=False)
     df_sorted[["vehicle_type", "license_number", "det_start", "det_end"]].to_json(output_json_path)
-
-if __name__ == "__main__":
-    input_csv_path = "./rawdata/raw_data_2023-11-22.csv"
-    process_csv(input_csv_path)
