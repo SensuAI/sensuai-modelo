@@ -1,0 +1,15 @@
+{
+    "CAR_MODEL": {
+        "cut_time": "01:00",
+        "verbose_mode": true,
+        "test_mode": false
+    },
+    "CLEANING": {
+        "folder_location": "./model/rawdata",
+        "time": "19:50"
+    },
+    "DATA_SEND": {
+        "time": "19:52",
+        "verbose": true
+    }
+}

@@ -5,27 +5,19 @@ from datetime import datetime
 import schedule
 import time
 import threading
+import json
+
 
 ######################################################### GLOBAL VARIABLES #########################################################
-CAR_MODEL = {
-    'cut_time': "01:00",
-    'verbose_mode': False,
-    'test_mode': True
-}
 
-CLEANING = {
-    # For the test file
-    # 'folder_location': ".",
+# Cargar valores desde config.json
+with open('config.json', 'r') as config_file:
+    config_data = json.load(config_file)
 
-    # Path where it is stored
-    'folder_location': "./model/rawdata",
-    'time': "19:50"
-}
+CAR_MODEL = config_data["CAR_MODEL"]
+CLEANING = config_data["CLEANING"]
+DATA_SEND = config_data["DATA_SEND"]
 
-DATA_SEND = {
-    'time': "19:52",
-    'verbose': True
-}
 ####################################################### END GLOBAL VARIABLES #########################################################
 
 
