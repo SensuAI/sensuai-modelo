@@ -23,6 +23,7 @@ def car_detection(cut_time: str, verbose_mode: bool, test_mode: bool):
         cap = cv2.VideoCapture("./model/testing/PlatesDataSet.mp4")
     else:
         cap = cv2.VideoCapture(1)
+        
 
     #Creamos variables que nos servirán para iterar 
     frame_num = -1

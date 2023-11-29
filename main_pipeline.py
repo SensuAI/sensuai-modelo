@@ -11,6 +11,7 @@ import json
 ######################################################### GLOBAL VARIABLES #########################################################
 
 # Cargar valores desde config.json
+
 with open('config.json', 'r') as config_file:
     config_data = json.load(config_file)
 
